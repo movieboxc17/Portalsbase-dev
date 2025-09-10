@@ -2,45 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Host Your Web Page with GitHub & Cloudflare</title>
+  <title>Professional Guide: Host Your Web Page with GitHub & Cloudflare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Modern font -->
+  <!-- Professional font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Light theme colors */
-      --accent: #2ea44f;
-      --accent-dark: #22863a;
-      --blue: #2b7cff;
-      --header: #23272f;
-      --bg: #f6f8fa;
+      --accent: #207544;
+      --accent-dark: #14522c;
+      --blue: #2166c2;
+      --header: #20232a;
+      --bg: #f7f8fa;
       --card: #fff;
-      --step-bg: #eaf9ed;
-      --resources-bg: #e6f3ff;
-      --border-radius: 18px;
-      --shadow: 0 2px 8px rgba(0,0,0,0.04);
-      --highlight: #cdf1dc;
-      --gradient: linear-gradient(90deg, #d7f5e7 0%, #eaf9fd 100%);
+      --step-bg: #f3f6f7;
+      --resources-bg: #e9f2fa;
+      --border-radius: 14px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.03);
+      --highlight: #e2f2ea;
       --divider: #e3e6eb;
-      --step-number-size: 2.1rem;
-      --transition: 0.18s cubic-bezier(.4,.2,.2,1);
+      --step-number-size: 1.9rem;
+      --transition: 0.17s cubic-bezier(.4,.2,.2,1);
       --text: #222b3a;
-      --text-muted: #5a626d;
+      --text-muted: #526076;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --accent: #4fd177;
-        --accent-dark: #249e52;
-        --blue: #6cb4ff;
-        --header: #16181c;
-        --bg: #13161a;
-        --card: #191d22;
-        --step-bg: #1c2024;
-        --resources-bg: #183046;
-        --border-radius: 18px;
-        --shadow: 0 2px 8px rgba(46,164,79,0.09);
-        --highlight: #20442c;
-        --gradient: linear-gradient(90deg, #263e33 0%, #223d48 100%);
+        --accent: #48b97b;
+        --accent-dark: #207544;
+        --blue: #5d98cf;
+        --header: #181b1f;
+        --bg: #141518;
+        --card: #181b1f;
+        --step-bg: #212329;
+        --resources-bg: #23354a;
+        --highlight: #1e2d25;
         --divider: #23272f;
         --text: #eaf9ed;
         --text-muted: #aacdb8;
@@ -56,19 +51,18 @@
     body {
       margin: 0;
       background: var(--bg);
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
       color: var(--text);
-      line-height: 1.85;
-      letter-spacing: -0.015em;
+      line-height: 1.7;
       min-height: 100vh;
       transition: background 0.3s, color 0.3s;
     }
     header {
       background: var(--header);
       color: #fff;
-      padding: 2.2rem 1.2rem 1.6rem 1.2rem;
+      padding: 2.1rem 1.2rem 1.5rem 1.2rem;
       text-align: center;
-      border-bottom: 4px solid var(--accent);
+      border-bottom: 3px solid var(--accent);
       box-shadow: var(--shadow);
       position: relative;
       z-index: 1;
@@ -76,120 +70,108 @@
     }
     header h1 {
       font-size: 2rem;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.25rem;
       font-weight: 800;
       letter-spacing: -1px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.08;
+      line-height: 1.1;
     }
     header p {
       color: var(--text-muted);
-      font-size: 1.09rem;
+      font-size: 1.06rem;
       font-weight: 500;
       margin-top: 0.2rem;
       margin-bottom: 0;
       letter-spacing: 0.01em;
-      opacity: 0.92;
+      opacity: 0.87;
     }
-    .animated-bar {
+    .bar {
       background: linear-gradient(90deg,var(--accent) 0%,var(--blue) 100%);
-      height: 6px;
+      height: 5px;
       width: 100%;
       position: absolute;
       left: 0; bottom: 0;
-      animation: gradientmove 3s linear infinite;
       z-index: 2;
       border-radius: 2px;
-      opacity: 0.8;
-    }
-    @keyframes gradientmove {
-      0% {background-position:0%;}
-      100% {background-position:100%;}
+      opacity: 0.9;
     }
     main {
-      max-width: 700px;
-      margin: 2.2rem auto;
+      max-width: 620px;
+      margin: 2.1rem auto;
       background: var(--card);
       border-radius: var(--border-radius);
       box-shadow: var(--shadow);
-      padding: 2rem 1.3rem 2rem 1.3rem;
+      padding: 2rem 1.5rem 2.2rem 1.5rem;
       position: relative;
       z-index: 1;
-      background: var(--card);
       transition: box-shadow var(--transition), border-radius var(--transition), background 0.3s;
-    }
-    main:hover {
-      box-shadow: 0 2px 16px rgba(46,164,79,0.12);
-      border-radius: 22px;
     }
     h2 {
       margin-top: 0;
-      font-size: 1.13rem;
-      color: var(--header);
+      font-size: 1.05rem;
+      color: var(--accent);
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
       letter-spacing: -0.5px;
       z-index: 2;
       position: relative;
       transition: color 0.3s;
     }
-    @media (prefers-color-scheme: dark) {
-      h2 { color: var(--accent); }
-    }
     .step {
       background: var(--step-bg);
-      padding: 1rem 1.1rem 1rem 1.1rem;
-      border-radius: 11px;
-      margin-bottom: 1.5rem;
-      border-left: 6px solid var(--accent);
+      padding: 1rem 1rem 0.9rem 1.2rem;
+      border-radius: 10px;
+      margin-bottom: 1.1rem;
+      border-left: 4px solid var(--accent);
       box-shadow: none;
-      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      transition: border-color var(--transition), background var(--transition);
       position: relative;
       z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
     }
     .step:hover {
       border-color: var(--accent-dark);
-      background: #d6f8e7;
-      transform: translateY(-2px);
+      background: #e5f3ed;
     }
     @media (prefers-color-scheme: dark) {
       .step {
-        background: #232a2f;
-        border-left: 6px solid var(--accent);
+        background: var(--step-bg);
+        border-left: 4px solid var(--accent);
       }
       .step:hover {
-        background: #20442c;
+        background: #1e2d25;
       }
     }
-    .step h2 {
+    .step-content {
+      flex: 1;
+    }
+    .step-number {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.97em;
+      border-radius: 50%;
+      width: var(--step-number-size); height: var(--step-number-size);
       display: flex;
       align-items: center;
-      gap: 0.28em;
-      margin-bottom: 0.1em;
-      font-size: 1rem;
+      justify-content: center;
+      border: 2px solid #fff;
+      outline: 1px solid #d1eada;
+      margin-right: 0.3rem;
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+      transition: background var(--transition), transform var(--transition);
+      box-shadow: none;
     }
-    .step h2::before {
-      content: "🟢";
-      font-size: 0.95em;
-      color: var(--accent-dark);
-      filter: none;
-      opacity: 0.7;
-    }
-    @media (prefers-color-scheme: dark) {
-      .step h2::before {
-        color: var(--accent);
-        filter: none;
-      }
-    }
+    .step:first-child .step-number {background: var(--blue);}
+    .step-number:hover {background: var(--accent-dark);transform: scale(1.03);}
     ol, ul {
       margin: 0.3rem 0 0 1.1rem;
       padding: 0;
     }
     li {
-      margin-bottom: 0.25em;
+      margin-bottom: 0.18em;
       padding-left: 0.1em;
     }
     a {
@@ -203,7 +185,7 @@
     }
     a:hover {
       color: var(--accent);
-      background: #cdf1dc44;
+      background: #e2f2ea;
       text-decoration: underline;
     }
     code {
@@ -212,27 +194,24 @@
       padding: 2px 5px;
       font-size: 1em;
       font-family: 'Fira Mono', 'Consolas', monospace;
-      color: #24292f;
+      color: var(--header);
       margin: 0 2px;
       font-weight: 600;
-      border: 1px solid #b7eacb;
-      transition: background 0.3s, color 0.3s;
+      border: 1px solid #c4e3d5;
       box-shadow: none;
+      transition: background 0.3s, color 0.3s;
     }
     @media (prefers-color-scheme: dark) {
       code {
         color: #c2f4c9;
-        border: 1px solid #249e52;
-        background: #20442c;
+        border: 1px solid #207544;
+        background: #1e2d25;
       }
-    }
-    .step ol, .step ul {
-      font-size: 1em;
     }
     .step li strong {
       color: var(--accent-dark);
       font-weight: 700;
-      background: #cdf1dc44;
+      background: #e2f2ea;
       border-radius: 3px;
       padding: 0 2px;
       box-shadow: none;
@@ -240,13 +219,13 @@
     @media (prefers-color-scheme: dark) {
       .step li strong {
         color: var(--accent);
-        background: #20442c;
+        background: #1e2d25;
       }
     }
     .divider {
       height: 2px;
       background: var(--divider);
-      margin: 1.2rem 0;
+      margin: 1.1rem 0;
       border-radius: 2px;
       width: 70%;
       margin-left: auto;
@@ -257,17 +236,17 @@
     }
     .resources {
       background: var(--resources-bg);
-      border-left: 6px solid var(--blue);
+      border-left: 4px solid var(--blue);
       margin-bottom: 0;
-      border-radius: 11px;
-      padding-bottom: 0.9rem;
+      border-radius: 10px;
+      padding: 0.9rem 1rem 0.7rem 1.2rem;
       transition: background 0.3s;
       box-shadow: none;
     }
     @media (prefers-color-scheme: dark) {
       .resources {
-        background: #183046;
-        border-left: 6px solid var(--blue);
+        background: var(--resources-bg);
+        border-left: 4px solid var(--blue);
       }
     }
     .resources h2::before {
@@ -276,179 +255,151 @@
       color: var(--blue);
       margin-right: 0.2em;
       filter: none;
-      opacity: 0.8;
+      opacity: 0.7;
     }
     @media (prefers-color-scheme: dark) {
       .resources h2::before { color: var(--blue); }
     }
     .resources ul {
-      margin-top: 0.6em;
+      margin-top: 0.4em;
       margin-bottom: 0;
     }
     .step:last-child {
       margin-bottom: 0;
     }
     /* Responsive Design */
-    @media (max-width: 900px) {
-      main { max-width: 99vw; }
-    }
     @media (max-width: 700px) {
       main { padding: 0.7rem 0.2rem; }
-      header h1 { font-size: 1.12rem; }
-      header { padding: 0.9rem 0.2rem 0.4rem 0.2rem; }
+      header h1 { font-size: 1rem; }
+      header { padding: 0.7rem 0.2rem 0.4rem 0.2rem; }
       .step { padding: 0.6rem 0.15rem 0.6rem 0.5rem; }
-      h2 { font-size: 0.95rem; }
-    }
-    /* Step number badge */
-    .step-number {
-      position: absolute;
-      left: -2.1rem; top: 0.6rem;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.95em;
-      border-radius: 50%;
-      width: var(--step-number-size); height: var(--step-number-size);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #fff;
-      outline: 1px solid #cdf1dc;
-      z-index: 2;
-      transition: background var(--transition), transform var(--transition);
-    }
-    .step:first-child .step-number {background: var(--blue);}
-    .step-number:hover {background: var(--accent-dark);transform: scale(1.04);}
-    .step {padding-left: 2.7rem;}
-    /* Add checkmark after each step on step hover */
-    .step:hover .step-number::after {
-      content: "✓";
-      position: absolute;
-      right: -0.7em; bottom: -0.7em;
-      font-size: 1em;
-      color: var(--accent-dark);
-      background: #cdf1dc;
-      border-radius: 50%;
-      padding: 2px 6px;
-      opacity: 0.7;
-    }
-    @media (prefers-color-scheme: dark) {
-      .step:hover .step-number::after {
-        background: #20442c;
-        color: var(--accent);
-      }
+      h2 { font-size: 0.93rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Host Your Web Page with GitHub &amp; Cloudflare</h1>
-    <p>Step-by-step guide to deploying your site with a custom domain</p>
-    <div class="animated-bar"></div>
+    <p>A professional step-by-step guide to deploying your site with a custom domain</p>
+    <div class="bar"></div>
   </header>
   <main>
     <section class="step">
-      <div class="step-number">1</div>
-      <h2>Create a GitHub Repository</h2>
-      <ol>
-        <li>
-          Go to <a href="https://github.com/new" target="_blank">GitHub new repo</a> and create a public repository (e.g. <code>yourusername/yourwebsite</code>).
-        </li>
-        <li>
-          Add your website files to the repository (e.g. <code>index.html</code>, <code>style.css</code>).
-        </li>
-        <li>
-          Commit and push your changes.
-        </li>
-      </ol>
+      <span class="step-number">1</span>
+      <div class="step-content">
+        <h2>Create a GitHub Repository</h2>
+        <ol>
+          <li>
+            Go to <a href="https://github.com/new" target="_blank">GitHub new repo</a> and create a public repository (e.g. <code>yourusername/yourwebsite</code>).
+          </li>
+          <li>
+            Add your website files to the repository (e.g. <code>index.html</code>, <code>style.css</code>).
+          </li>
+          <li>
+            Commit and push your changes.
+          </li>
+        </ol>
+      </div>
     </section>
     <section class="step">
-      <div class="step-number">2</div>
-      <h2>Enable GitHub Pages</h2>
-      <ol>
-        <li>
-          Go to your repository’s <strong>Settings &gt; Pages</strong>.
-        </li>
-        <li>
-          Under <strong>Source</strong>, select the branch (usually <code>main</code>) and folder (<code>/root</code> or <code>/docs</code>).
-        </li>
-        <li>
-          Save. Your site will be published at <code>https://yourusername.github.io/yourwebsite</code>.
-        </li>
-      </ol>
+      <span class="step-number">2</span>
+      <div class="step-content">
+        <h2>Enable GitHub Pages</h2>
+        <ol>
+          <li>
+            Go to your repository’s <strong>Settings &gt; Pages</strong>.
+          </li>
+          <li>
+            Under <strong>Source</strong>, select the branch (usually <code>main</code>) and folder (<code>/root</code> or <code>/docs</code>).
+          </li>
+          <li>
+            Save. Your site will be published at <code>https://yourusername.github.io/yourwebsite</code>.
+          </li>
+        </ol>
+      </div>
     </section>
     <section class="step">
-      <div class="step-number">3</div>
-      <h2>Buy or Use a Custom Domain</h2>
-      <ol>
-        <li>
-          Purchase a domain name from a registrar (Namecheap, Google Domains, etc.) or use one you already own.
-        </li>
-      </ol>
+      <span class="step-number">3</span>
+      <div class="step-content">
+        <h2>Buy or Use a Custom Domain</h2>
+        <ol>
+          <li>
+            Purchase a domain name from a registrar (Namecheap, Google Domains, etc.) or use one you already own.
+          </li>
+        </ol>
+      </div>
     </section>
     <section class="step">
-      <div class="step-number">4</div>
-      <h2>Set Up Cloudflare for Your Domain</h2>
-      <ol>
-        <li>
-          Sign up / log in at <a href="https://dash.cloudflare.com/" target="_blank">Cloudflare</a>.
-        </li>
-        <li>
-          Add your domain to Cloudflare and follow the steps to change your registrar’s nameservers to Cloudflare’s.
-        </li>
-        <li>
-          Once verified, you’ll be able to manage DNS for your domain via Cloudflare.
-        </li>
-      </ol>
+      <span class="step-number">4</span>
+      <div class="step-content">
+        <h2>Set Up Cloudflare for Your Domain</h2>
+        <ol>
+          <li>
+            Sign up / log in at <a href="https://dash.cloudflare.com/" target="_blank">Cloudflare</a>.
+          </li>
+          <li>
+            Add your domain to Cloudflare and follow the steps to change your registrar’s nameservers to Cloudflare’s.
+          </li>
+          <li>
+            Once verified, you’ll be able to manage DNS for your domain via Cloudflare.
+          </li>
+        </ol>
+      </div>
     </section>
     <section class="step">
-      <div class="step-number">5</div>
-      <h2>Configure DNS to Point to GitHub Pages</h2>
-      <ol>
-        <li>
-          In Cloudflare, go to your domain’s <strong>DNS</strong> settings.
-        </li>
-        <li>
-          Add a <strong>CNAME</strong> record:
-          <ul>
-            <li><strong>Name:</strong> <code>@</code> or <code>www</code></li>
-            <li><strong>Target:</strong> <code>yourusername.github.io</code></li>
-          </ul>
-        </li>
-        <li>
-          For root domains (<code>example.com</code>), use Cloudflare’s <a href="https://support.cloudflare.com/hc/en-us/articles/360019093152-Understanding-Cloudflare-s-Page-Rule-Redirects" target="_blank">Page Rules</a> or configure with ALIAS/ANAME if supported, or set up an <strong>A</strong> record pointing to GitHub’s IPs:
-          <ul>
-            <li><strong>A Record IPs:</strong> <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code></li>
-          </ul>
-        </li>
-      </ol>
+      <span class="step-number">5</span>
+      <div class="step-content">
+        <h2>Configure DNS to Point to GitHub Pages</h2>
+        <ol>
+          <li>
+            In Cloudflare, go to your domain’s <strong>DNS</strong> settings.
+          </li>
+          <li>
+            Add a <strong>CNAME</strong> record:
+            <ul>
+              <li><strong>Name:</strong> <code>@</code> or <code>www</code></li>
+              <li><strong>Target:</strong> <code>yourusername.github.io</code></li>
+            </ul>
+          </li>
+          <li>
+            For root domains (<code>example.com</code>), use Cloudflare’s <a href="https://support.cloudflare.com/hc/en-us/articles/360019093152-Understanding-Cloudflare-s-Page-Rule-Redirects" target="_blank">Page Rules</a> or configure with ALIAS/ANAME if supported, or set up an <strong>A</strong> record pointing to GitHub’s IPs:
+            <ul>
+              <li><strong>A Record IPs:</strong> <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code></li>
+            </ul>
+          </li>
+        </ol>
+      </div>
     </section>
     <section class="step">
-      <div class="step-number">6</div>
-      <h2>Tell GitHub Pages About Your Custom Domain</h2>
-      <ol>
-        <li>
-          In your repo, go to <strong>Settings &gt; Pages</strong>.
-        </li>
-        <li>
-          Under <strong>Custom domain</strong>, enter your domain (e.g. <code>example.com</code>).
-        </li>
-        <li>
-          GitHub will check your DNS. Once set up, your site will be live at your custom domain.
-        </li>
-      </ol>
+      <span class="step-number">6</span>
+      <div class="step-content">
+        <h2>Tell GitHub Pages About Your Custom Domain</h2>
+        <ol>
+          <li>
+            In your repo, go to <strong>Settings &gt; Pages</strong>.
+          </li>
+          <li>
+            Under <strong>Custom domain</strong>, enter your domain (e.g. <code>example.com</code>).
+          </li>
+          <li>
+            GitHub will check your DNS. Once set up, your site will be live at your custom domain.
+          </li>
+        </ol>
+      </div>
     </section>
     <section class="step">
-      <div class="step-number">7</div>
-      <h2>(Optional) Force HTTPS</h2>
-      <ol>
-        <li>
-          In GitHub Pages settings, enable <strong>Enforce HTTPS</strong> for secure connections.
-        </li>
-        <li>
-          Cloudflare will also automatically provide SSL for your domain.
-        </li>
-      </ol>
+      <span class="step-number">7</span>
+      <div class="step-content">
+        <h2>(Optional) Force HTTPS</h2>
+        <ol>
+          <li>
+            In GitHub Pages settings, enable <strong>Enforce HTTPS</strong> for secure connections.
+          </li>
+          <li>
+            Cloudflare will also automatically provide SSL for your domain.
+          </li>
+        </ol>
+      </div>
     </section>
     <div class="divider"></div>
     <section class="resources step">
