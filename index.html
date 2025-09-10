@@ -4,28 +4,32 @@
   <meta charset="UTF-8">
   <title>Host Your Web Page with GitHub & Cloudflare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Google Fonts for modern look -->
+  <!-- Google Fonts for a crisp, modern look -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --accent: #2ea44f;
       --accent-dark: #22863a;
+      --blue: #2b7cff;
       --header: #24292f;
       --bg: #f6f8fa;
       --card: #fff;
       --step-bg: #eaf9ed;
-      --border-radius: 22px;
-      --shadow: 0 10px 32px rgba(46,164,79,0.10);
+      --resources-bg: #e6f3ff;
+      --border-radius: 26px;
+      --shadow: 0 10px 36px rgba(46,164,79,0.13);
       --highlight: #cdf1dc;
       --gradient: linear-gradient(90deg, #d7f5e7 0%, #eaf9fd 100%);
       --box-gradient: linear-gradient(120deg,#eaf9ed 0%, #cbe4fc 100%);
       --divider: #e3e6eb;
+      --step-number-size: 2.7rem;
+      --transition: 0.19s cubic-bezier(.4,.2,.2,1);
     }
     html {
       box-sizing: border-box;
       font-size: 18px;
     }
-    *, *:before, *:after {
+    *, *::before, *::after {
       box-sizing: inherit;
     }
     body {
@@ -35,6 +39,7 @@
       color: #21293a;
       line-height: 1.85;
       letter-spacing: -0.015em;
+      min-height: 100vh;
     }
     header {
       background: var(--header);
@@ -49,91 +54,117 @@
       z-index: 1;
     }
     header h1 {
-      font-size: 2.6rem;
-      margin-bottom: 0.42rem;
+      font-size: 2.7rem;
+      margin-bottom: 0.45rem;
       font-weight: 800;
       letter-spacing: -1.5px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.12);
+      text-shadow: 0 2px 24px rgba(0,0,0,0.14);
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      line-height: 1.1;
     }
     header p {
-      color: #c2e7c8;
+      color: #b8e2b0;
       font-size: 1.22rem;
       font-weight: 600;
       margin-top: 0.2rem;
       margin-bottom: 0;
+      letter-spacing: 0.03em;
+      opacity: 0.97;
+    }
+    .animated-bar {
+      background: linear-gradient(90deg,#2ea44f 0%,#36c9e7 60%, #2b7cff 100%);
+      height: 7px;
+      width: 100%;
+      position: absolute;
+      left: 0; bottom: 0;
+      animation: gradientmove 3s linear infinite;
+      z-index: 2;
+      border-radius: 3px;
+    }
+    @keyframes gradientmove {
+      0% {background-position:0%;}
+      100% {background-position:100%;}
     }
     main {
-      max-width: 800px;
+      max-width: 880px;
       margin: 3.2rem auto;
       background: var(--card);
       border-radius: var(--border-radius);
       box-shadow: var(--shadow);
-      padding: 2.6rem 3rem 2.8rem 3rem;
+      padding: 2.7rem 3.1rem 2.9rem 3.1rem;
       position: relative;
       overflow: hidden;
       z-index: 1;
-      /* Subtle gradient background */
       background-image: var(--box-gradient);
+      transition: box-shadow var(--transition), border-radius var(--transition);
+    }
+    main:hover {
+      box-shadow: 0 18px 54px rgba(46,164,79,0.18);
+      border-radius: 32px;
     }
     main::before {
       content: "";
       position: absolute;
       z-index: 0;
-      top: -75px; left: -85px;
-      width: 320px; height: 320px;
+      top: -95px; left: -95px;
+      width: 340px; height: 340px;
       background: radial-gradient(circle at 36% 44%, #c1f2d7 0%, transparent 70%);
-      opacity: 0.43;
+      opacity: 0.38;
       pointer-events: none;
     }
     main::after {
       content: "";
       position: absolute;
       z-index: 0;
-      bottom: -60px; right: -80px;
-      width: 220px; height: 220px;
+      bottom: -80px; right: -80px;
+      width: 240px; height: 240px;
       background: radial-gradient(circle at 60% 60%, #eaf9fd 0%, transparent 70%);
-      opacity: 0.28;
+      opacity: 0.24;
       pointer-events: none;
     }
     h2 {
       margin-top: 0;
-      font-size: 1.33rem;
+      font-size: 1.35rem;
       color: var(--header);
       font-weight: 800;
       margin-bottom: 0.7rem;
       letter-spacing: -0.5px;
+      z-index: 2;
+      position: relative;
     }
     .step {
       background: var(--step-bg);
-      padding: 1.5rem 2.1rem 1.2rem 2.1rem;
-      border-radius: 16px;
-      margin-bottom: 2.4rem;
-      border-left: 8px solid var(--accent);
+      padding: 1.8rem 2.3rem 1.3rem 2.3rem;
+      border-radius: 18px;
+      margin-bottom: 2.6rem;
+      border-left: 9px solid var(--accent);
       box-shadow: 0 2px 18px rgba(46,164,79,0.09);
-      transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
+      transition: box-shadow var(--transition), border-color var(--transition), background var(--transition), transform var(--transition);
       position: relative;
       z-index: 1;
     }
     .step:hover {
-      box-shadow: 0 14px 40px rgba(46,164,79,0.17);
+      box-shadow: 0 18px 44px rgba(46,164,79,0.22);
       border-color: var(--accent-dark);
       background: #d6f8e7;
+      transform: scale(1.02);
     }
     .step h2 {
       display: flex;
       align-items: center;
       gap: 0.38em;
-      margin-bottom: 0.3em;
+      margin-bottom: 0.25em;
+      font-size: 1.2rem;
     }
     .step h2::before {
       content: "🟢";
       font-size: 1.08em;
       color: var(--accent-dark);
       filter: drop-shadow(0 0 2px #a9d9b6);
+      opacity: 0.8;
     }
     ol, ul {
       margin: 0.65rem 0 0 1.4rem;
@@ -147,58 +178,68 @@
       color: var(--accent-dark);
       text-decoration: underline;
       font-weight: 600;
-      transition: color 0.18s;
+      transition: color 0.18s, background 0.18s;
       word-break: break-word;
+      border-radius: 2px;
+      padding: 1px 2px;
     }
     a:hover {
       color: var(--accent);
+      background: #cdf1dc77;
       text-decoration: underline;
     }
     code {
       background: var(--highlight);
-      border-radius: 5px;
-      padding: 2px 8px;
-      font-size: 1.07em;
+      border-radius: 6px;
+      padding: 2px 9px;
+      font-size: 1.09em;
       font-family: 'Fira Mono', 'Consolas', monospace;
       color: #24292f;
       margin: 0 2px;
       font-weight: 700;
+      border: 1px solid #b7eacb;
+      box-shadow: 0 1px 4px #cdf1dc44;
     }
     .step ol, .step ul {
-      font-size: 1.06em;
+      font-size: 1.07em;
     }
     .step li strong {
       color: var(--accent-dark);
       font-weight: 700;
-      background: #cdf1dc44;
+      background: #cdf1dc88;
       border-radius: 3px;
       padding: 0 2px;
+      box-shadow: 0 1px 4px #cdf1dc44;
     }
     .divider {
       height: 2px;
       background: var(--divider);
-      margin: 2.2rem 0;
+      margin: 2.4rem 0;
       border-radius: 2px;
       width: 70%;
       margin-left: auto;
       margin-right: auto;
-      opacity: 0.7;
+      opacity: 0.8;
+      box-shadow: 0 2px 8px #eaf9fd88;
     }
     .resources {
-      background: #e6f3ff;
-      border-left: 8px solid #2b7cff;
+      background: var(--resources-bg);
+      border-left: 9px solid var(--blue);
       box-shadow: 0 2px 14px rgba(46,164,79,0.07);
       margin-bottom: 0;
+      border-radius: 18px;
+      padding-bottom: 1.4rem;
     }
     .resources h2::before {
       content: "📚";
-      font-size: 1.05em;
-      color: #2b7cff;
+      font-size: 1.15em;
+      color: var(--blue);
       margin-right: 0.3em;
       filter: drop-shadow(0 0 2px #ffe86d);
+      opacity: 0.85;
     }
     .resources ul {
-      margin-top: 0.9em;
+      margin-top: 1em;
       margin-bottom: 0;
     }
     .step:last-child {
@@ -206,49 +247,57 @@
     }
     /* Responsive Design */
     @media (max-width: 900px) {
-      main { max-width: 98vw; }
+      main { max-width: 99vw; }
     }
     @media (max-width: 700px) {
-      main { padding: 1.1rem 0.7rem; }
+      main { padding: 1.25rem 0.4rem; }
       header h1 { font-size: 1.35rem; }
-      header { padding: 1.3rem 0.5rem 0.8rem 0.5rem; }
-      .step { padding: 1.1rem 0.7rem 0.8rem 1.1rem; }
-      h2 { font-size: 1.03rem; }
+      header { padding: 1.4rem 0.3rem 0.8rem 0.3rem; }
+      .step { padding: 1rem 0.4rem 0.6rem 1.3rem; }
+      h2 { font-size: 1.08rem; }
     }
-    /* Subtle animated gradient bar under header */
-    .animated-bar {
-      background: linear-gradient(90deg,#2ea44f 0%,#36c9e7 60%, #2b7cff 100%);
-      height: 6px;
-      width: 100%;
-      position: absolute;
-      left: 0; bottom: 0;
-      animation: gradientmove 3s linear infinite;
-      z-index: 2;
-    }
-    @keyframes gradientmove {
-      0% {background-position:0%;}
-      100% {background-position:100%;}
-    }
-    /* Step number badge */
+    /* Animated step number badge */
     .step-number {
       position: absolute;
-      left: -2.1rem; top: 1.15rem;
+      left: -2.5rem; top: 1.1rem;
       background: var(--accent);
       color: #fff;
       font-weight: 800;
-      font-size: 1.05em;
+      font-size: 1.13em;
       border-radius: 50%;
-      width: 2.5rem; height: 2.5rem;
+      width: var(--step-number-size); height: var(--step-number-size);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 8px rgba(46,164,79,0.12);
+      box-shadow: 0 2px 14px rgba(46,164,79,0.13);
       border: 3px solid #fff;
       outline: 2px solid #cdf1dc;
       z-index: 2;
+      transition: background var(--transition), transform var(--transition);
+      animation: stepPop 1.1s cubic-bezier(.7,-0.2,.2,1.4) 1;
     }
-    .step {padding-left: 2.9rem;}
-    .step:first-child .step-number {background: #2b7cff;}
+    @keyframes stepPop {
+      0% { transform: scale(0.7); opacity: 0; }
+      70% { transform: scale(1.13); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .step:first-child .step-number {background: var(--blue);}
+    .step-number:hover {background: var(--accent-dark);transform: scale(1.06);}
+    .step {padding-left: 3rem;}
+    /* Add subtle hover effect for step content */
+    .step-content:hover {background: #f0f9f4;}
+    /* Add checkmark after each step on step hover */
+    .step:hover .step-number::after {
+      content: "✓";
+      position: absolute;
+      right: -0.7em; bottom: -0.7em;
+      font-size: 1.2em;
+      color: var(--accent-dark);
+      background: #cdf1dc;
+      border-radius: 50%;
+      padding: 2px 6px;
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
