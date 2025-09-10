@@ -2,135 +2,156 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Development Page</title>
+  <title>Project Info | Portalsbase</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { 
-      font-family: 'Segoe UI', Arial, sans-serif; 
-      background: #f4f4f4; 
-      margin: 0; 
-      padding: 0;
-      color: #222;
+    body {
+      margin: 0;
+      background: #f6f8fa;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #23272f;
     }
     header {
       background: #24292f;
       color: #fff;
-      padding: 1.5rem 1rem;
+      padding: 2rem 1rem 1rem 1rem;
       text-align: center;
+      border-bottom: 4px solid #2ea44f;
     }
     main {
-      max-width: 900px;
-      margin: 2rem auto;
+      max-width: 780px;
+      margin: 2.5rem auto;
       background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      border-radius: 8px;
-      padding: 2rem;
-    }
-    h1, h2 {
-      color: #24292f;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      padding: 2rem 2.5rem 2.5rem 2.5rem;
     }
     .section {
       margin-bottom: 2rem;
     }
-    .links a {
+    h1, h2 {
+      color: #24292f;
+      margin-bottom: 0.5rem;
+    }
+    ul, ol {
+      margin: 0.75rem 0 0 1.2rem;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6em;
+      margin-top: 0.4em;
+    }
+    .tag {
+      background: #eaecef;
+      color: #0366d6;
+      font-size: 0.95em;
+      border-radius: 4px;
+      padding: 0.3em 0.8em;
       display: inline-block;
-      margin-right: 1rem;
+    }
+    .contact-list {
+      list-style: none;
+      padding: 0;
+    }
+    .contact-list li {
+      margin-bottom: 0.5em;
+    }
+    .contact-list .avatar {
+      width: 28px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 0.5em;
+    }
+    a {
       color: #0366d6;
       text-decoration: none;
     }
-    .links a:hover {
+    a:hover {
       text-decoration: underline;
     }
-    .changelog {
-      background: #f6f8fa;
-      border-radius: 5px;
-      padding: 1rem;
-      font-size: 0.95em;
-    }
-    .sandbox textarea {
-      width: 100%;
-      min-height: 80px;
-      font-family: monospace;
-      font-size: 1em;
-      margin-bottom: 1rem;
-      resize: vertical;
-    }
-    .sandbox button {
+    .docs-link {
+      display: inline-block;
+      margin-right: 1em;
+      margin-bottom: 0.5em;
       background: #2ea44f;
       color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
+      padding: 0.4em 1em;
       border-radius: 4px;
-      cursor: pointer;
-      font-size: 1em;
+      text-decoration: none;
+      font-weight: 500;
     }
-    .sandbox button:hover {
+    .docs-link:hover {
       background: #22863a;
     }
-    .sandbox-output {
-      background: #f6f8fa;
-      border-radius: 5px;
-      padding: 1rem;
-      margin-top: 1rem;
-      min-height: 40px;
-      font-family: monospace;
-      white-space: pre-wrap;
+    @media (max-width: 600px) {
+      main { padding: 1.2rem; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Development Page</h1>
-    <p>Project Dashboard &amp; Playground</p>
+    <h1>Portalsbase Project Info</h1>
+    <p>A centralized dashboard for developers and stakeholders</p>
   </header>
   <main>
     <section class="section">
-      <h2>Project Info</h2>
+      <h2>Overview</h2>
+      <p>
+        <strong>Portalsbase</strong> is an open-source platform designed to streamline portal management and developer workflows. This info page summarizes key project details, contacts, tech stack, and documentation.
+      </p>
+      <div class="tags">
+        <span class="tag">Status: In Development</span>
+        <span class="tag">Version: 0.1.0</span>
+        <span class="tag">License: MIT</span>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Repository</h2>
       <ul>
-        <li><strong>Name:</strong> Portalsbase</li>
-        <li><strong>Repo:</strong> <a href="https://github.com/movieboxc17/Portalsbase" target="_blank">movieboxc17/Portalsbase</a></li>
-        <li><strong>Status:</strong> 🚧 In Development</li>
+        <li>
+          <strong>GitHub:</strong>
+          <a href="https://github.com/movieboxc17/Portalsbase" target="_blank">
+            movieboxc17/Portalsbase
+          </a>
+        </li>
+        <li>
+          <strong>Issues:</strong>
+          <a href="https://github.com/movieboxc17/Portalsbase/issues" target="_blank">View Issues</a>
+        </li>
+        <li>
+          <strong>Pull Requests:</strong>
+          <a href="https://github.com/movieboxc17/Portalsbase/pulls" target="_blank">View PRs</a>
+        </li>
       </ul>
     </section>
-    <section class="section links">
-      <h2>Quick Links</h2>
-      <a href="https://github.com/movieboxc17/Portalsbase/issues" target="_blank">Issues</a>
-      <a href="https://github.com/movieboxc17/Portalsbase/pulls" target="_blank">Pull Requests</a>
-      <a href="https://github.com/movieboxc17/Portalsbase/wiki" target="_blank">Wiki</a>
-    </section>
-    <section class="section changelog">
-      <h2>Changelog</h2>
+    <section class="section">
+      <h2>Tech Stack</h2>
       <ul>
-        <li><strong>[2025-09-10]</strong> Initial dev page set up.</li>
-        <li><strong>[2025-09-08]</strong> Added authentication logic.</li>
-        <li><strong>[2025-09-05]</strong> Created backend APIs.</li>
+        <li>Frontend: HTML, CSS, JavaScript</li>
+        <li>Backend: Node.js (Express)</li>
+        <li>Database: MongoDB</li>
+        <li>Authentication: JWT</li>
+        <li>Deployment: Vercel / Heroku</li>
       </ul>
     </section>
-    <section class="section sandbox">
-      <h2>Sandbox</h2>
-      <p>Test JavaScript code snippets here:</p>
-      <textarea id="code" placeholder="console.log('Hello, dev!');"></textarea>
-      <br>
-      <button onclick="runCode()">Run</button>
-      <div id="output" class="sandbox-output"></div>
-      <script>
-        function runCode() {
-          const code = document.getElementById('code').value;
-          const outputEl = document.getElementById('output');
-          try {
-            // Redirect console.log to outputEl
-            let logs = '';
-            const log = (...args) => { logs += args.join(' ') + '\n'; };
-            const oldLog = console.log;
-            console.log = log;
-            eval(code);
-            console.log = oldLog;
-            outputEl.textContent = logs || '[No output]';
-          } catch (e) {
-            outputEl.textContent = 'Error: ' + e.message;
-          }
-        }
-      </script>
+    <section class="section">
+      <h2>Team & Contact</h2>
+      <ul class="contact-list">
+        <li>
+          <img class="avatar" src="https://avatars.githubusercontent.com/u/3369400?v=4" alt="movieboxc17">
+          <a href="https://github.com/movieboxc17" target="_blank">movieboxc17</a> (Lead Dev)
+        </li>
+        <!-- Add more team members here -->
+      </ul>
+      <p>
+        For questions, reach out via <a href="mailto:your.email@example.com">email</a> or GitHub Discussions.
+      </p>
+    </section>
+    <section class="section">
+      <h2>Documentation</h2>
+      <a class="docs-link" href="https://github.com/movieboxc17/Portalsbase/wiki" target="_blank">Project Wiki</a>
+      <a class="docs-link" href="https://github.com/movieboxc17/Portalsbase/blob/main/README.md" target="_blank">README</a>
     </section>
   </main>
 </body>
