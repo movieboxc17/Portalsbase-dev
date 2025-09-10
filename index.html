@@ -5,57 +5,158 @@
   <title>Host Your Web Page with GitHub & Cloudflare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    :root {
+      --accent: #2ea44f;
+      --accent-dark: #22863a;
+      --header: #24292f;
+      --bg: #f6f8fa;
+      --card: #fff;
+      --step-bg: #f3f7f9;
+      --border-radius: 14px;
+      --shadow: 0 4px 18px rgba(0,0,0,0.11);
+    }
     body {
       margin: 0;
-      background: #f6f8fa;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      color: #23272f;
+      background: var(--bg);
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      color: #222d3f;
+      line-height: 1.7;
     }
     header {
-      background: #24292f;
+      background: var(--header);
       color: #fff;
-      padding: 2rem 1rem 1rem 1rem;
+      padding: 2.5rem 1rem 1.6rem 1rem;
       text-align: center;
-      border-bottom: 4px solid #2ea44f;
+      border-bottom: 5px solid var(--accent);
+      box-shadow: var(--shadow);
+      font-size: 1.15rem;
+    }
+    header h1 {
+      font-size: 2.3rem;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    header p {
+      color: #b5d3bc;
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-top: 0.2rem;
     }
     main {
-      max-width: 680px;
+      max-width: 730px;
       margin: 2.5rem auto;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
-      padding: 2rem 2.5rem 2.5rem 2.5rem;
+      background: var(--card);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2.2rem 2.5rem 2.2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
     }
-    h1, h2 {
-      color: #24292f;
-      margin-bottom: 0.5rem;
-    }
-    ul, ol {
-      margin: 0.75rem 0 0 1.2rem;
-    }
-    a {
-      color: #0366d6;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+    h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+      color: var(--header);
+      font-weight: 600;
+      margin-bottom: 0.7rem;
     }
     .step {
-      background: #f6f8fa;
-      padding: 1rem;
-      border-radius: 6px;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid #2ea44f;
+      background: var(--step-bg);
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      border-left: 5px solid var(--accent);
+      box-shadow: 0 2px 7px rgba(46,164,79,0.05);
+      transition: box-shadow 0.2s;
+    }
+    .step:hover {
+      box-shadow: 0 8px 32px rgba(46,164,79,0.13);
+    }
+    ol {
+      margin: 0.6rem 0 0 1.2rem;
+      padding: 0;
+    }
+    ul {
+      margin: 0.6rem 0 0 1.2rem;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 0.55em;
+    }
+    a {
+      color: var(--accent-dark);
+      text-decoration: underline;
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    a:hover {
+      color: var(--accent);
+      text-decoration: underline;
     }
     code {
       background: #eaecef;
       border-radius: 4px;
-      padding: 2px 5px;
-      font-size: 0.98em;
+      padding: 2px 6px;
+      font-size: 1.05em;
       font-family: 'Fira Mono', 'Consolas', monospace;
+      color: #24292f;
+      margin: 0 2px;
     }
-    @media (max-width: 600px) {
-      main { padding: 1.2rem; }
+    .resources ul {
+      margin-top: 1em;
+    }
+    .step h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.35em;
+    }
+    .step h2::before {
+      content: "⏩";
+      font-size: 1.1em;
+      color: var(--accent-dark);
+      filter: drop-shadow(0 0 2px #a9d9b6);
+    }
+    .resources h2::before {
+      content: "📚";
+      font-size: 1em;
+      color: #f3b200;
+      margin-right: 0.3em;
+      filter: drop-shadow(0 0 2px #ffe86d);
+    }
+    @media (max-width: 650px) {
+      main { padding: 1rem 0.7rem; }
+      header h1 { font-size: 1.45rem; }
+      header { padding: 1.2rem 0.5rem 0.8rem 0.5rem; }
+    }
+    /* Subtle gradient background for the main card */
+    main::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: -70px; left: -70px;
+      width: 250px; height: 250px;
+      background: radial-gradient(circle at 40% 40%, #d7f5e7 0%, transparent 70%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    main::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      bottom: -50px; right: -50px;
+      width: 170px; height: 170px;
+      background: radial-gradient(circle at 60% 60%, #eaf9fd 0%, transparent 70%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    /* Make steps pop gently on hover */
+    .step {
+      cursor: pointer;
+    }
+    .step:active {
+      box-shadow: 0 2px 13px rgba(46,164,79,0.19);
+      border-color: var(--accent-dark);
     }
   </style>
 </head>
@@ -161,7 +262,7 @@
         </li>
       </ol>
     </section>
-    <section class="step">
+    <section class="resources step">
       <h2>Resources</h2>
       <ul>
         <li>
