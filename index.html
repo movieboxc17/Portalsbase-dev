@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Host Your Web Page with GitHub & Cloudflare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts for modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --accent: #2ea44f;
@@ -13,15 +14,16 @@
       --bg: #f6f8fa;
       --card: #fff;
       --step-bg: #eaf9ed;
-      --border-radius: 18px;
-      --shadow: 0 6px 24px rgba(0,0,0,0.12);
+      --border-radius: 22px;
+      --shadow: 0 10px 32px rgba(46,164,79,0.10);
       --highlight: #cdf1dc;
       --gradient: linear-gradient(90deg, #d7f5e7 0%, #eaf9fd 100%);
-      --box-gradient: linear-gradient(120deg, #eaf9ed 0%, #cbe4fc 100%);
+      --box-gradient: linear-gradient(120deg,#eaf9ed 0%, #cbe4fc 100%);
+      --divider: #e3e6eb;
     }
     html {
       box-sizing: border-box;
-      font-size: 17px;
+      font-size: 18px;
     }
     *, *:before, *:after {
       box-sizing: inherit;
@@ -30,26 +32,28 @@
       margin: 0;
       background: var(--bg);
       font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      color: #222d3f;
-      line-height: 1.8;
+      color: #21293a;
+      line-height: 1.85;
+      letter-spacing: -0.015em;
     }
     header {
       background: var(--header);
       color: #fff;
-      padding: 2.8rem 1rem 1.8rem 1rem;
+      padding: 3.1rem 1.2rem 2.2rem 1.2rem;
       text-align: center;
-      border-bottom: 6px solid var(--accent);
+      border-bottom: 7px solid var(--accent);
       box-shadow: var(--shadow);
       font-size: 1.15rem;
       position: relative;
       overflow: hidden;
+      z-index: 1;
     }
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.45rem;
-      font-weight: 700;
-      letter-spacing: -1px;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.11);
+      font-size: 2.6rem;
+      margin-bottom: 0.42rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.12);
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -57,17 +61,18 @@
     }
     header p {
       color: #c2e7c8;
-      font-size: 1.18rem;
-      font-weight: 500;
-      margin-top: 0.3rem;
+      font-size: 1.22rem;
+      font-weight: 600;
+      margin-top: 0.2rem;
+      margin-bottom: 0;
     }
     main {
-      max-width: 760px;
-      margin: 2.7rem auto;
+      max-width: 800px;
+      margin: 3.2rem auto;
       background: var(--card);
       border-radius: var(--border-radius);
       box-shadow: var(--shadow);
-      padding: 2.3rem 2.7rem 2.2rem 2.7rem;
+      padding: 2.6rem 3rem 2.8rem 3rem;
       position: relative;
       overflow: hidden;
       z-index: 1;
@@ -78,59 +83,72 @@
       content: "";
       position: absolute;
       z-index: 0;
-      top: -70px; left: -70px;
-      width: 290px; height: 290px;
+      top: -75px; left: -85px;
+      width: 320px; height: 320px;
       background: radial-gradient(circle at 36% 44%, #c1f2d7 0%, transparent 70%);
-      opacity: 0.5;
+      opacity: 0.43;
       pointer-events: none;
     }
     main::after {
       content: "";
       position: absolute;
       z-index: 0;
-      bottom: -50px; right: -60px;
-      width: 190px; height: 190px;
+      bottom: -60px; right: -80px;
+      width: 220px; height: 220px;
       background: radial-gradient(circle at 60% 60%, #eaf9fd 0%, transparent 70%);
-      opacity: 0.38;
+      opacity: 0.28;
       pointer-events: none;
     }
     h2 {
       margin-top: 0;
-      font-size: 1.4rem;
+      font-size: 1.33rem;
       color: var(--header);
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 0.7rem;
       letter-spacing: -0.5px;
     }
     .step {
       background: var(--step-bg);
-      padding: 1.4rem 1.7rem 1.2rem 1.7rem;
-      border-radius: 12px;
-      margin-bottom: 2.1rem;
-      border-left: 6px solid var(--accent);
-      box-shadow: 0 2px 11px rgba(46,164,79,0.07);
-      transition: box-shadow 0.2s, border-color 0.2s;
+      padding: 1.5rem 2.1rem 1.2rem 2.1rem;
+      border-radius: 16px;
+      margin-bottom: 2.4rem;
+      border-left: 8px solid var(--accent);
+      box-shadow: 0 2px 18px rgba(46,164,79,0.09);
+      transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
       position: relative;
       z-index: 1;
     }
     .step:hover {
-      box-shadow: 0 10px 36px rgba(46,164,79,0.13);
+      box-shadow: 0 14px 40px rgba(46,164,79,0.17);
       border-color: var(--accent-dark);
       background: #d6f8e7;
     }
+    .step h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.38em;
+      margin-bottom: 0.3em;
+    }
+    .step h2::before {
+      content: "🟢";
+      font-size: 1.08em;
+      color: var(--accent-dark);
+      filter: drop-shadow(0 0 2px #a9d9b6);
+    }
     ol, ul {
-      margin: 0.65rem 0 0 1.3rem;
+      margin: 0.65rem 0 0 1.4rem;
       padding: 0;
     }
     li {
-      margin-bottom: 0.5em;
+      margin-bottom: 0.55em;
       padding-left: 0.1em;
     }
     a {
       color: var(--accent-dark);
       text-decoration: underline;
-      font-weight: 500;
+      font-weight: 600;
       transition: color 0.18s;
+      word-break: break-word;
     }
     a:hover {
       color: var(--accent);
@@ -138,42 +156,17 @@
     }
     code {
       background: var(--highlight);
-      border-radius: 4px;
-      padding: 2px 7px;
+      border-radius: 5px;
+      padding: 2px 8px;
       font-size: 1.07em;
       font-family: 'Fira Mono', 'Consolas', monospace;
       color: #24292f;
       margin: 0 2px;
-      font-weight: 600;
-    }
-    .resources ul {
-      margin-top: 1em;
-    }
-    .step h2 {
-      display: flex;
-      align-items: center;
-      gap: 0.38em;
-    }
-    .step h2::before {
-      content: "▶️";
-      font-size: 1.18em;
-      color: var(--accent-dark);
-      filter: drop-shadow(0 0 2px #a9d9b6);
-    }
-    .resources h2::before {
-      content: "📚";
-      font-size: 1.05em;
-      color: #f3b200;
-      margin-right: 0.3em;
-      filter: drop-shadow(0 0 2px #ffe86d);
-    }
-    .step:last-child {
-      margin-bottom: 0;
+      font-weight: 700;
     }
     .step ol, .step ul {
-      font-size: 1.04em;
+      font-size: 1.06em;
     }
-    /* Extra highlight for important actions */
     .step li strong {
       color: var(--accent-dark);
       font-weight: 700;
@@ -181,23 +174,93 @@
       border-radius: 3px;
       padding: 0 2px;
     }
-    @media (max-width: 700px) {
-      main { padding: 1.1rem 0.8rem; }
-      header h1 { font-size: 1.5rem; }
-      header { padding: 1.3rem 0.6rem 0.7rem 0.6rem; }
-      .step { padding: 1rem 0.7rem 0.8rem 1.1rem; }
-      h2 { font-size: 1.08rem; }
+    .divider {
+      height: 2px;
+      background: var(--divider);
+      margin: 2.2rem 0;
+      border-radius: 2px;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.7;
     }
+    .resources {
+      background: #e6f3ff;
+      border-left: 8px solid #2b7cff;
+      box-shadow: 0 2px 14px rgba(46,164,79,0.07);
+      margin-bottom: 0;
+    }
+    .resources h2::before {
+      content: "📚";
+      font-size: 1.05em;
+      color: #2b7cff;
+      margin-right: 0.3em;
+      filter: drop-shadow(0 0 2px #ffe86d);
+    }
+    .resources ul {
+      margin-top: 0.9em;
+      margin-bottom: 0;
+    }
+    .step:last-child {
+      margin-bottom: 0;
+    }
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      main { max-width: 98vw; }
+    }
+    @media (max-width: 700px) {
+      main { padding: 1.1rem 0.7rem; }
+      header h1 { font-size: 1.35rem; }
+      header { padding: 1.3rem 0.5rem 0.8rem 0.5rem; }
+      .step { padding: 1.1rem 0.7rem 0.8rem 1.1rem; }
+      h2 { font-size: 1.03rem; }
+    }
+    /* Subtle animated gradient bar under header */
+    .animated-bar {
+      background: linear-gradient(90deg,#2ea44f 0%,#36c9e7 60%, #2b7cff 100%);
+      height: 6px;
+      width: 100%;
+      position: absolute;
+      left: 0; bottom: 0;
+      animation: gradientmove 3s linear infinite;
+      z-index: 2;
+    }
+    @keyframes gradientmove {
+      0% {background-position:0%;}
+      100% {background-position:100%;}
+    }
+    /* Step number badge */
+    .step-number {
+      position: absolute;
+      left: -2.1rem; top: 1.15rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05em;
+      border-radius: 50%;
+      width: 2.5rem; height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(46,164,79,0.12);
+      border: 3px solid #fff;
+      outline: 2px solid #cdf1dc;
+      z-index: 2;
+    }
+    .step {padding-left: 2.9rem;}
+    .step:first-child .step-number {background: #2b7cff;}
   </style>
 </head>
 <body>
   <header>
     <h1>Host Your Web Page with GitHub &amp; Cloudflare</h1>
     <p>Step-by-step guide to deploying your site with a custom domain</p>
+    <div class="animated-bar"></div>
   </header>
   <main>
     <section class="step">
-      <h2>1. Create a GitHub Repository</h2>
+      <div class="step-number">1</div>
+      <h2>Create a GitHub Repository</h2>
       <ol>
         <li>
           Go to <a href="https://github.com/new" target="_blank">GitHub new repo</a> and create a public repository (e.g. <code>yourusername/yourwebsite</code>).
@@ -211,7 +274,8 @@
       </ol>
     </section>
     <section class="step">
-      <h2>2. Enable GitHub Pages</h2>
+      <div class="step-number">2</div>
+      <h2>Enable GitHub Pages</h2>
       <ol>
         <li>
           Go to your repository’s <strong>Settings &gt; Pages</strong>.
@@ -225,7 +289,8 @@
       </ol>
     </section>
     <section class="step">
-      <h2>3. Buy or Use a Custom Domain</h2>
+      <div class="step-number">3</div>
+      <h2>Buy or Use a Custom Domain</h2>
       <ol>
         <li>
           Purchase a domain name from a registrar (Namecheap, Google Domains, etc.) or use one you already own.
@@ -233,7 +298,8 @@
       </ol>
     </section>
     <section class="step">
-      <h2>4. Set Up Cloudflare for Your Domain</h2>
+      <div class="step-number">4</div>
+      <h2>Set Up Cloudflare for Your Domain</h2>
       <ol>
         <li>
           Sign up / log in at <a href="https://dash.cloudflare.com/" target="_blank">Cloudflare</a>.
@@ -247,20 +313,21 @@
       </ol>
     </section>
     <section class="step">
-      <h2>5. Configure DNS to Point to GitHub Pages</h2>
+      <div class="step-number">5</div>
+      <h2>Configure DNS to Point to GitHub Pages</h2>
       <ol>
         <li>
           In Cloudflare, go to your domain’s <strong>DNS</strong> settings.
         </li>
         <li>
-          Add a CNAME record:
+          Add a <strong>CNAME</strong> record:
           <ul>
             <li><strong>Name:</strong> <code>@</code> or <code>www</code></li>
             <li><strong>Target:</strong> <code>yourusername.github.io</code></li>
           </ul>
         </li>
         <li>
-          For root domains (<code>example.com</code>), use Cloudflare’s <a href="https://support.cloudflare.com/hc/en-us/articles/360019093152-Understanding-Cloudflare-s-Page-Rule-Redirects" target="_blank">Page Rules</a> or configure with ALIAS/ANAME if supported, or set up an A record pointing to GitHub’s IPs:
+          For root domains (<code>example.com</code>), use Cloudflare’s <a href="https://support.cloudflare.com/hc/en-us/articles/360019093152-Understanding-Cloudflare-s-Page-Rule-Redirects" target="_blank">Page Rules</a> or configure with ALIAS/ANAME if supported, or set up an <strong>A</strong> record pointing to GitHub’s IPs:
           <ul>
             <li><strong>A Record IPs:</strong> <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code></li>
           </ul>
@@ -268,7 +335,8 @@
       </ol>
     </section>
     <section class="step">
-      <h2>6. Tell GitHub Pages About Your Custom Domain</h2>
+      <div class="step-number">6</div>
+      <h2>Tell GitHub Pages About Your Custom Domain</h2>
       <ol>
         <li>
           In your repo, go to <strong>Settings &gt; Pages</strong>.
@@ -282,7 +350,8 @@
       </ol>
     </section>
     <section class="step">
-      <h2>7. (Optional) Force HTTPS</h2>
+      <div class="step-number">7</div>
+      <h2>(Optional) Force HTTPS</h2>
       <ol>
         <li>
           In GitHub Pages settings, enable <strong>Enforce HTTPS</strong> for secure connections.
@@ -292,6 +361,7 @@
         </li>
       </ol>
     </section>
+    <div class="divider"></div>
     <section class="resources step">
       <h2>Resources</h2>
       <ul>
